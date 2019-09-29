@@ -12,23 +12,28 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/person")
+@RequestMapping("/")
 public class PersonResource {
 
     @Autowired
     private PersonService personService;
 
     @GetMapping
+    public ResponseEntity healthCheck() {
+        return ResponseEntity.ok("PersonService is running.");
+    }
+
+    @GetMapping("/person")
     public List<Person> findAll() {
         return this.personService.findAll();
     }
 
-    @GetMapping("/firstname/{name}")
+    @GetMapping("/person/firstname/{name}")
     public Person findByFirstName(@PathVariable String name) {
         return this.personService.findByFirstName(name);
     }
 
-    @GetMapping("/lastname/{name}")
+    @GetMapping("/person/lastname/{name}")
     public Person findByLastName(@PathVariable String name) {
         return this.personService.findByLastName(name);
     }
