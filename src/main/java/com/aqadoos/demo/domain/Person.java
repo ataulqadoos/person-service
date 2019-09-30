@@ -5,10 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
@@ -26,11 +23,13 @@ public class Person implements Serializable {
     @Getter @Setter
     @ApiModelProperty
     @NotNull
+    @Column(unique = true)
     private String firstName;
 
     @Getter @Setter
     @ApiModelProperty
     @NotNull
+    @Column(unique = true)
     private String lastName;
 
     public Person() {}
